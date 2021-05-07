@@ -3,28 +3,33 @@
 from tkinter import *
 from tkinter import messagebox
 
-root = Tk()
-root.title("BMI Calculator")
-root.geometry("600x500")
-header = Label(root, text='Ideal Body Mass Index Calculator')
-header.place(x=250, y=0)
+# giving a title to the window and adding a heading
+window = Tk()
+window.title("BMI Calculator")
+window.geometry("600x500")
+heading = Label(window, text='Ideal Body Mass Index Calculator')
+heading.place(x=250, y=0)
 
-frame = Frame(root, width=500, height=200, borderwidth=1, relief='ridge')
+frame = Frame(window, width=500, height=200, borderwidth=1, relief='ridge')
 frame.place(relx=0.15, rely=0.1)
 
+# giving funcionality to the weight entry
 weight = Label(frame, text="Weight(kg):")
 weight.place(relx=0, rely=0)
 weight_entry = Entry(frame)
 weight_entry.place(relx=0.3, rely=0)
 
+# giving funcionality to the height entry
 height = Label(frame, text="Height(cm):")
 height.place(relx=0, rely=0.2)
 height_entry = Entry(frame)
 height_entry.place(relx=0.3, rely=0.2)
 
+# giving functionality to the gender drop down
 gender = Label(frame, text="Gender:")
 gender.place(rely=0.43, relx=0)
 
+# giving functionality to age label entry
 age = Label(frame, text="Age:")
 age.place(rely=0.7, relx=0)
 age_entry = Entry(frame, state='readonly')
@@ -45,7 +50,6 @@ def activate(value):
 
 gender_menu = OptionMenu(frame, variable, *options, command=activate)
 gender_menu.place(relx=0.3, rely=0.4)
-
 
 def bmi_calc():
     try:
@@ -79,19 +83,23 @@ def bmi_calc():
         messagebox.showerror(title=None, message='Gender was not specified or invalid entry was given')
         delete()
 
+# placing the calculate button and giving it functionality
 
-calculate = Button(root, text="Calculate your Ideal Body Mass Index", width=50, command=bmi_calc)
+calculate = Button(window, text="Calculate your Ideal Body Mass Index", width=50, command=bmi_calc)
 calculate.place(rely=0.52, relx=0.2)
 
-bmi = Label(root, text="BMI:")
+# placing labels in the window giving them functionality
+
+bmi = Label(window, text="BMI:")
 bmi.place(rely=0.7, relx=0.1)
-bmi_field = Entry(root, state='readonly')
+bmi_field = Entry(window, state='readonly')
 bmi_field.place(rely=0.7, relx=0.2)
-ideal_bmi = Label(root, text='Ideal BMI:')
+ideal_bmi = Label(window, text='Ideal BMI:')
 ideal_bmi.place(rely=0.7, relx=0.5)
-ideal_field = Entry(root, state='readonly')
+ideal_field = Entry(window, state='readonly')
 ideal_field.place(rely=0.7, relx=0.65)
 
+# defining delete
 
 def delete():
     weight_entry.delete(0, END)
@@ -108,9 +116,14 @@ def delete():
     weight_entry.focus()
     variable.set(options[0])
 
+#giving clear button functionality
 
-clear = Button(root, text='Clear', command=delete)
+clear = Button(window, text='Clear', command=delete)
 clear.place(rely=0.85, relx=0.1)
-exit = Button(root, text='Exit', command='exit')
+
+#giving exit button functionality
+
+exit = Button(window, text='Exit', command='exit')
 exit.place(rely=0.85, relx=0.83)
-root.mainloop()
+
+window.mainloop()
